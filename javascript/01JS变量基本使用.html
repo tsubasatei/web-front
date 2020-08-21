@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01JS变量的基本使用</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    alert("hello world");
+    prompt("姑娘你的芳龄");
+    prompt("你多大了", 18);
+    console.log(12306);
+    console.log(typeof 123);  // number
+    console.log(typeof true); // boolean
+    console.log(typeof undefined); // undefined
+    //null属于Null一个类型特殊值：但是在控制台打印的是Object类型
+    //注意：虽然控制台打印的是Object类型，其实不是（Null）
+    console.log(typeof null); // object
+    console.log(typeof "abc"); // string
+
+    var num;
+    num = 123;
+    console.log(num);
+    var num = 456;
+    console.log(num);
+    console.log(0.1 + 0.2); // 0.30000000000000004
+    console.log(0.3 + 0.2); // 0.5
+    console.log(0.31456789.toFixed(2)); // 0.31
+    console.log(0.31656789.toFixed(2)); // 0.32
+</script>

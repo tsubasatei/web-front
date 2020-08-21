@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04定位:固定、相对、绝对</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        div{
+            width: 400px;
+            height: 200px;
+        }
+        .box{
+            background: green;
+        }
+        .box1{
+            background: red;
+            position: fixed;
+            left: 500px;
+            top: 200px;
+        }
+        .box2{
+            background: purple;
+        }
+        .box3{
+            position: relative;
+            background: blue;
+            left: 600px;
+            top: 100px;
+        }
+        .box4{
+            background: pink;
+        }
+        .box5{
+            background: orange;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">第一个div</div>
+    <div class="box1">第二个div</div>
+    <div class="box2">第三个div</div>
+    <div class="box3">第四个div
+        <div class="box5">第六个div</div>
+    </div>
+    <div class="box4">第五个div</div>
+</body>
+</html>

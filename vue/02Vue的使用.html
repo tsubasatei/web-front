@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02Vue的使用</title>
+    <script src="../js/vue.min.js"></script>
+    <style>
+        td{
+            border:1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>我是Vue，我今年{{age}}岁</h1>
+        <h1>下面指令是操作文本</h1>
+        <p v-text="msg"></p>
+        <hr>
+        <p>{{msg}}</p>
+        <p v-html="msg"></p>
+        <ul>
+            <li>吃饭</li>
+            <li v-show='3 > 8'>睡觉</li>
+            <li>打豆豆</li>
+        </ul>
+        <button @click="add('军事')">军事</button>
+        <button @click="add('新闻')">新闻</button>
+        <button @click="add('直播')">直播</button>
+        <ul v-show="'军事'==info">
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+            <li>军事军事</li>
+        </ul>
+        <ul v-show="'新闻'==info">
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+            <li>新闻新闻</li>
+        </ul>
+        <ul v-show="'直播'==info">
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+            <li>直播直播</li>
+        </ul>
+
+        <h1>你的姓别是什么呀?</h1>
+        <ul>
+            <li v-if="'男'==sex">男</li>
+            <li v-else-if="'女'==sex">女</li>
+            <li v-else>未知</li>
+        </ul>
+
+        <h1>非常常用的指令v-for</h1>
+        <h1>循环语句遍历数字</h1>
+        <h2 v-for="item in 2">我是二级标题{{item}}</h2>
+        <h1>循环语句遍历数组</h1>
+        <ul>
+            <li v-for="(item , index) in arr">{{item}}----{{index}}</li>
+        </ul>
+        <table>
+            <tr v-for="row in 9" :key="row.id">
+                <td v-for="col in row" :key="col.id">{{row}} * {{col}} = {{row * col}}</td>
+            </tr>
+        </table>
+
+        <p><input type="text" v-model="hobby"><button @click="addHobby">单击我添加爱好</button></p>
+        <ul>
+            <li v-for="item in arr2">{{item}}</li>
+        </ul>
+
+        <h1>我是计数器小案例{{count}}</h1>
+        <button v-on:click="plus">单击我+1</button>
+        <button @click="minus">单击我-1</button>
+        <p @mouseenter="haha">我绑定鼠标移上</p>
+        
+        <h1>我是实例属性值{{msg}}</h1>
+        <input type="text" v-model="msg">
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            age: 18,
+            msg: "<a href='http://www/baidu.com'>百度</a>",
+            info: '直播',
+            sex: '女',
+            arr: ['吃饭', '睡觉', '打豆豆'],
+            hobby:'',
+            arr2:[],
+            count: 0
+        },
+        methods: {
+            add(value) {
+                this.info = value
+            },
+            addHobby(){
+                this.arr2.push(this.hobby)
+                this.hobby = ''
+            },
+            plus() {
+                this.count++
+            },
+            minus() {
+                this.count--
+            },
+            haha($event) {
+                alert("鼠标在我上面")
+            }
+        },
+        watch: {
+            msg() {
+                console.log('msg发生了变化')
+            }
+        },
+    })
+    vm.age = 20;
+</script>

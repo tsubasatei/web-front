@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03调色板</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div :style="{width: '200px', height: '200px', background:`rgb(${R}, ${G}, ${B})`}"></div>
+        R:  <input type="range" min="0" max="255" v-model="R">{{R}}<br>
+        G:  <input type="range" min="0" max="255" v-model="G">{{G}}<br>
+        B:  <input type="range" min="0" max="255" v-model="B">{{B}}<br>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            R: 100,
+            G: 100,
+            B: 100
+        }
+    })
+</script>

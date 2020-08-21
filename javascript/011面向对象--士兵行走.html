@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>011面向对象士兵行走</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: relative;
+            width: 50px;
+            height: 100px;
+            background: url('../static/1.png');
+            /* 背景图定位 */
+            background-position: 0px -200px;
+            /* border: 1px solid black; */
+        }
+    </style>F
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var arr = [];
+    function Bing() {
+        //控制背景图发生变化属性
+        this.x = 0;
+        //top属性值
+        this.t = parseInt(Math.random() * 500);
+        //修改left属性值
+        this.l = 0;
+        //控制小兵是否行走
+        this.isMove = true;
+        //经历四步走
+        this.init();
+        //将每隔一秒创建实例添加到数组进行同一管理
+        arr.push(this);
+        //控制是否行走
+        this.bind();
+    }
+    Bing.prototype.init = function () {
+        this.dom = document.createElement("div");
+        this.dom.style.top = this.t + "px";
+        document.body.appendChild(this.dom);
+    }
+    // 更新脚步方法
+    Bing.prototype.update = function() {
+        if (!this.isMove) return;
+        this.x++;
+        this.l += 10;
+        if (this.x > 3) this.x = 0;
+        this.dom.style.backgroundPosition = -this.x * 50 + "px -200px";
+        this.dom.style.left = this.l + "px";
+        if (this.l > 1000) {
+            arr.splice(arr.indexOf(this), 1);
+            document.body.removeChild(this.dom);
+        }
+    }
+
+    Bing.prototype.bind = function () {
+        var self = this;
+        this.dom.onclick = function() {
+            self.isMove = !self.isMove;
+        }
+    }
+    var time = 0
+    setInterval(function() {
+        time++;
+        if (time % 10 == 0) new Bing;
+        for(var i = 0; i < arr.length; i++) {
+            arr[i].update();
+        }
+    }, 100)
+</script>

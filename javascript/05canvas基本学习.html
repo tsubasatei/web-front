@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05canvas基本使用</title>
+</head>
+<body>
+    <canvas style="border: 1px solid black;" width="600px" height="400px">
+        <ul>
+            <li>123</li>
+            <li>456</li>
+        </ul>
+    </canvas>
+</body>
+</html>
+<script>
+    //获取canvas标签
+    var canvas = document.querySelector("canvas");
+    //画布当中任何操作必须通过2D上下文进行操作
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "cyan";
+    // 绘制矩形
+    ctx.fillRect(100, 100, 100, 100);
+
+    // 绘制圆形
+    ctx.beginPath();
+    ctx.arc(200, 200, 50, 0, Math.PI * 2, false);
+    ctx.fillStyle = "red";
+    //开始填充
+    ctx.fill();
+
+    // 边框设置
+    ctx.lineWidth = 20;
+    ctx.strokeStyle = "pink";
+    //开始绘制
+    ctx.stroke();
+</script>

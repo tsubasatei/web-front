@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010轮播图布局方式</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .box{
+            position: relative;
+            width: 520px;
+            height: 280px;
+            border: 1px solid red;
+            left: 400px;
+            top: 100px;
+            overflow: hidden;
+        }
+        ul{
+            list-style: none;
+            position: absolute;
+            width: 520px;
+            height: 280px;
+        }
+        .leftbtn{
+            position: absolute;
+            top: 30%;
+            left: 0px;
+            width: 60px;
+            height: 30px;
+            background: black;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            opacity: .5;
+            cursor: pointer;
+        }
+        .rightbtn{
+            position: absolute;
+            top: 30%;
+            right: 0px;
+            width: 60px;
+            height: 30px;
+            background: black;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            opacity: .5;
+            cursor: pointer;
+        }
+        ol{
+            position: absolute;
+            list-style: none;
+            width: 200px;
+            height: 25px;
+            left: 35%;
+            bottom: 5px;
+        }
+        /* 后代选择器 */
+        ol li{
+            float: left;
+            margin-right: 5px;
+            background-color: black;
+            width: 25px;
+            height: 25px;
+            border-radius: 12.5px;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+        }
+        .cur{
+            transform: scale(1.2);
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><img src="../static/banner1.jpg" alt="轮播图"></li>
+            <li><img src="../static/banner1.jpg" alt="轮播图"></li>
+            <li><img src="../static/banner1.jpg" alt="轮播图"></li>
+            <li><img src="../static/banner1.jpg" alt="轮播图"></li>
+            <li><img src="../static/banner1.jpg" alt="轮播图"></li>
+        </ul>
+        <div class="leftbtn">left</div>
+        <div class="rightbtn">right</div>
+        <ol>
+            <li class="cur">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+</body>
+</html>

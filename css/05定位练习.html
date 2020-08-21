@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05定位练习</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .box{
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: red;
+            border: 1px solid black;
+            left: 200px;
+            top: 50px;
+        }
+        .cur{
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            background: cyan;
+        }
+        .cur1{
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            left: 300px;
+            background: purple;
+        }
+        .cur2{
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            left: 300px;
+            top: 200px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="cur"></div>
+        <div class="cur1"></div>
+        <div class="cur2"></div>
+    </div>
+</body>
+</html>

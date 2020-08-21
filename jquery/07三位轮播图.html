@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07三位</title>
+    <script src="../js/jQuery.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        div {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+
+        ul {
+            position: absolute;
+            list-style: none;
+            width: 600px;
+            height: 400px;
+        }
+
+        ul li {
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            left: 600px;
+        }
+
+        img {
+            width: 600px;
+            height: 400px;
+        }
+
+        #leftbtn {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            left: 0px;
+            top: 30%;
+            text-align: center;
+            line-height: 40px;
+            opacity: .8;
+            color: white;
+            background: black;
+        }
+
+        #rightbtn {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            right: 0px;
+            top: 30%;
+            text-align: center;
+            line-height: 40px;
+            opacity: .8;
+            color: white;
+            background: black;
+        }
+
+        ol {
+            position: absolute;
+            left: 30%;
+            bottom: 3%;
+            width: 200;
+            height: 50px;
+            list-style: none;
+        }
+
+        ol li {
+            float: left;
+            ;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        .cur {
+            left: 0px;
+        }
+
+        .cur1 {
+            transform: scale(1.2);
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li class="cur"><img src="../static/1.jpg" alt="图一"></li>
+            <li><img src="../static/2.jpg" alt="图二"></li>
+            <li><img src="../static/3.jpg" alt="图三"></li>
+            <li><img src="../static/4.jpg" alt="图四"></li>
+            <li><img src="../static/5.jpg" alt="图五"></li>
+        </ul>
+        <button id="leftbtn">&lt;</button>
+        <button id="rightbtn">&gt;</button>
+        <ol>
+            <li class="cur1">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+</body>
+
+</html>
+<script>
+    /*
+        三位轮播图：当前图片的位置变化，下一张图片的位置变化，分页器跟着变化
+    */
+
+    // 全局变量
+    var idx = 0;
+    function rhandle() {
+        //当前显示这张图片从left为0位置运动到-600
+        $("ul li").eq(idx).css({
+            left: 0
+        }).stop(true).animate({
+            "left": -600
+        }, 500)
+        idx++;
+        idx = idx > 4 ? 0 : idx;
+        $("ul li").eq(idx).css({
+            left: 600
+        }).stop(true).animate({
+            "left": 0
+        }, 500)
+        // 底下的分页器跟着变化
+        $("ol li").eq(idx).addClass("cur1").siblings().removeClass("cur1");
+    }
+
+    function lhandle() {
+        //当前显示这张图片从left为0位置运动到-600
+        $("ul li").eq(idx).css({
+            left: 0
+        }).stop(true).animate({
+            "left": 600
+        }, 500)
+        idx--;
+        idx = idx < 0 ? 4 : idx;
+        $("ul li").eq(idx).css({
+            left: -600
+        }).stop(true).animate({
+            "left": 0
+        }, 500)
+        // 底下的分页器跟着变化
+        $("ol li").eq(idx).addClass("cur1").siblings().removeClass();
+    }
+    $("#leftbtn").click(lhandle);
+    $("#rightbtn").click(rhandle);
+
+    // 定时器轮播
+    var timer = setInterval(rhandle, 1500)
+    // 鼠标移上，清除定时器
+    $("div").mouseenter(function () {
+        clearInterval(timer);
+    });
+    $("div").mouseleave(function () {
+        timer = setInterval(rhandle, 1500)
+    })
+
+    // 分页器
+    $("ol li").click(function () {
+        // 单机的索引值
+        var index = $(this).index();
+        if (index > idx) {
+            $("ul li").eq(idx).css({
+                left: 0
+            }).stop(true).animate({
+                "left": -600
+            }, 500)
+            idx = index;
+            $("ul li").eq(idx).css({
+                left: 600
+            }).stop(true).animate({
+                "left": 0
+            }, 500)
+            // 底下的分页器跟着变化
+            $("ol li").eq(idx).addClass("cur1").siblings().removeClass("cur1");
+        } else {
+            $("ul li").eq(idx).css({
+                left: 0
+            }).stop(true).animate({
+                "left": 600
+            }, 500)
+            idx = index;
+            $("ul li").eq(idx).css({
+                left: -600
+            }).stop(true).animate({
+                "left": 0
+            }, 500)
+            // 底下的分页器跟着变化
+            $("ol li").eq(idx).addClass("cur1").siblings().removeClass();
+        }
+    })
+</script>

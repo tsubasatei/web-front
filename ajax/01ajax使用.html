@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01ajax使用</title>
+    <script src="../js/jQuery.min.js"></script>
+    <!-- AJAX技术不能跨域请求数据 -->
+</head>
+<body>
+    <h1>AJAX技术</h1>
+    <button>单击我向服务器端----悄悄发起上行请求（GET）</button>
+    <button>单击我向服务器端----悄悄的发起上行请求（POST）</button>
+    <button>单击我向服务器端发起请求</button>
+    <button id="btn">原生GET</button>
+</body>
+</html>
+<script>
+    $("button").eq(0).click(function() {
+        $.get("../static/data.txt", {
+            "name": "小明",
+            "age": 18
+        }, obj=>{
+            $("h1").html(obj)
+        })
+    })
+    // post请求找不到服务器
+    $("button").eq(1).click(function() {
+        $.post("../static/data.txt", obj=>{
+            $("h1").html(obj)
+        })
+    })
+    //第三个按钮单击事件
+    $("button:eq(2)").click(function () {
+        //向服务器端发起POST请求
+        //当前这个方法可以发起GET、POST，请求参数配置务必是一个JSON数据格式
+        $.ajax({
+            // 请求网址
+            "url": "./static/data.txt",
+            //请求方式
+            "type": "post",
+            //给服务器额外传递数据
+            "data": {
+                "a": 1
+            },
+            //回调函数：可以接受服务器数据
+            "success": function (data) {
+                //当服务器响应成功的时候会立即执行一次
+                $("h1").html(data);
+
+            }
+        });
+    });
+
+    //获取标签
+    var h1 = document.querySelector("h1");
+    var btn = document.getElementById("btn");
+    //单击按钮发起上行请求
+    btn.onclick = function () {
+        //悄悄发起上行请求
+        if (window.XMLHttpRequest) {
+            //高级浏览器写法
+            var xhr = new XMLHttpRequest();
+        } else {
+            //IE低版本写法
+            var xhr = new ActiveXObject("msxml2.0xmlhttp");
+        }
+        //设置请求方式
+        xhr.open("get", "../static/data.txt", true);
+        //发送请求
+        xhr.send();
+        //监听就绪状态
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                //在页面没有重新加载情况下实现页面局部跟新
+                h1.innerHTML = xhr.responseText;
+            }
+        }
+    }
+</script>

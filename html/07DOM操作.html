@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07DOM操作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box2 {
+            width: 600px;
+            height: 100px;
+            margin: 100px auto;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #box3 {
+            /* 定位元素 */
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: cyan;
+            left: 0px;
+        }
+
+        #box4 {
+            width: 300px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <img src="../static/niao.jpg" alt="小鸟" id="box" width="200px" height="200px">
+    <div class="cur" id="ha">天若有情天亦老</div>
+    <ul id="box1"></ul>
+    <div>我是表单元素：<input type="text" value="最近老下雨" id="cur"></div>
+    <div style="width:100px;height: 100px;color:blueviolet;border: 1px solid black;" id="cur1">12306</div>
+    <div id="box2">文字</div>
+    <div id="box3"></div>
+    <div id="box4"></div>
+</body>
+</html>
+<script>
+    //getElementById:是DOM方法，可以通过标签ID属性值获取任意节点
+    // 替换图片
+    var img = document.getElementById("box");
+    console.log(img);
+    console.log(img.src);
+    img.src = "../static/madara.jpg";
+
+    // 修改div
+    var div = document.getElementById("ha");
+    console.log(div.id);
+    console.log(div.className);
+    div.className = "rewrite";
+    div.id = "haha";
+    div.innerHTML = "人若有情死得早";
+
+    // document：整个文档
+    console.log(document); 
+    console.log(typeof document); //object
+    console.log(document.documentElement); // html标签
+    console.log(document.head); // head标签
+    console.log(document.body); // body标签
+    console.log(document.title); // title文本内容
+
+    // 操作表单元素文本
+    var input = document.getElementById("cur");
+    console.log(input.value);
+    input.value = "下雨要打伞";
+
+    // 操作行内样式
+    var div = document.getElementById("cur1");
+    console.log(div.style.width);
+    console.log(div.style.height);
+    console.log(div.style.color);
+    console.log(div.style.border);
+    div.style.width = "250px";
+    div.style.fontSize = "20px";
+    div.style.background = "cyan";
+
+    // 单击事件
+    var div2 = document.getElementById("box2");
+    var div3 = document.getElementById("box3");
+    var div4 = document.getElementById("box4");
+    var f = 12;
+    var w = 600
+    div2.onclick = function() {
+        f++;
+        w += 5;
+        div2.style.fontSize = f + "px";
+        div2.style.width = w + "px";
+    }
+    var ml = 10;
+    div3.onclick = function() {
+        ml += 5;
+        div3.style.marginLeft = ml + "px";
+    }
+
+    div4.onclick = function() {
+        var r = parseInt(Math.random() * 256);
+        var g = parseInt(Math.random() * 256);
+        var b = parseInt(Math.random() * 256);
+        div4.style.background = `rgb(${r}, ${g}, ${b})`;
+    }
+
+    // 给ul追加子元素
+    var ul = document.getElementById("box1");
+    for(var i = 0; i < 3; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = i + 1;
+        ul.appendChild(li);
+    }
+</script>

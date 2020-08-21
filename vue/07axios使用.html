@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07axios使用</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.js"></script>
+    <script src="../js/jQuery.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click="fetchData">单击我发起GET</button>
+        <button @click="psotData">单击我发起POST</button>
+    </div>
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "默认文本"
+        },
+        methods: {
+            fetchData() {
+                axios.get("../static/data.txt").then(obj => {
+                    this.msg = obj.data
+                })
+            },
+            psotData() {
+                axios.post("../static/data.txt").then(obj => {
+                    this.msg = obj.data
+                }).catch (err => {
+                    this.msg = error
+                })
+                // $.post("../static/data.txt", data => {
+                //     this.msg = data
+                // })
+            }
+        },
+    })
+</script>

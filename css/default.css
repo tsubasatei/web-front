@@ -1,0 +1,11 @@
+#box{
+    width: 400px;
+    height: 400px;
+    background: red;
+}
+#cur{
+    font-size: large;
+    color: skyblue;
+    text-align: center;
+    line-height: 400px;
+}

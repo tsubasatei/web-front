@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01jQuery函数库使用</title>
+    <script src="../js/jQuery.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>吃饭</li>
+        <li>睡觉</li>
+        <li>打豆豆</li>
+    </ul>
+    <span id="box">
+        我爱你祖国
+    </span>
+    <p class="cur">
+        我是祖国的花骨朵
+    </p>
+
+    <div>我是中国人</div>
+    <div>我是巴基斯坦人</div>
+    <div>我是泰国人</div>
+    <div>我是日本人</div>
+    <div>我是中国人</div>
+    <div>我是巴基斯坦人</div>
+    <div>我是泰国人</div>
+    <div>我是日本人</div>
+
+    <p>
+        <input type="text" value="我是一个输入文本地方">
+    </p>
+    <div id="box1">我是一个粉霜将，粉霜本领强</div>
+</body>
+
+</html>
+<script>
+    //JQ函数经常用来操作节点数上标签
+    //支持我们曾经学习过选择器：标签选择器、ID选择器、class选择器
+    //注意1:当程序当中引入JQ，这个函数库对外暴露了一个$函数,
+    //它是JQ函数库一个核心函数,经常用来匹配标签
+    //标签选择器
+    console.log($("li")); // k.fn.init(3)
+    //id选择器
+    console.log($("#box")); // k.fn.init(1)
+    //类选择器
+    console.log($(".cur"));
+    //如果向设置匹配标签的行内样式可以连续打点css函数
+    $("p").css({
+        "color": "red",
+        "fontSize": 30,
+        "background": "cyan",
+        "textAlign": "center"
+    })
+
+    //下面这些都是JQ函数库独有选择器
+    //:first,可以获取某一个匹配标签的第一个元素
+    // $("div:first").css({
+    //     "background": "red"
+    // });
+    // //:last,可以获取到某一个匹配标签最后一个元素
+    // $("div:last").css({
+    //     'background': "cyan"
+    // });
+    
+    //:even,代表的是偶数选择器
+    // $("div:even").css({
+    //     'background': "skyblue"
+    // });
+    // //:odd，代表的是奇数选择器
+    // $("div:odd").css({
+    //     'background': "pink"
+    // })
+    
+
+    //:gt(index)，大于选择器
+    $("div:gt(6)").css({
+        'background': "red"
+    });
+
+    // //:lt(index)小于选择器
+    $("div:lt(6)").css({
+        'color': "yellow"
+    })
+
+    //操作表单元素文本：利用的val方法
+    //获取表单元素文本
+    console.log($("input").val());
+    //重新设置表单元素文本
+    $("input").val("我修改了表单元素文本");
+    /**************************************************************************/
+    //操作非表单元素文本：利用的html方法
+    //获取非表单元素文本
+    console.log($("#box1").html());
+    $("div").html("修改非表单元素文本啦么么打~~~~")
+
+    var f = 16;
+    //JQ对于元素绑定事件都封装成函数
+    $("#box1").click(function () {
+        f++;
+        //修改div的字号大小
+        $(this).css({
+            "fontSize": f
+        })
+    });
+</script>

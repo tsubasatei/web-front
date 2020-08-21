@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01内部样式--选择器</title>
+    <style>
+        div{
+            font-size: 40px;
+            color: white;
+            background-color: pink;
+            text-align: center;
+            border: 1px solid black;
+            opacity: .5;
+            font-style: italic;
+        }
+        span{
+            color: black;
+            font-size: larger;
+            cursor: pointer;
+            font-style: oblique;
+        }
+        ul{
+            list-style: square;
+        }
+        #sleep{
+            color: skyblue;
+        }
+        #bd{
+            text-decoration: line-through;
+        }
+        .cur{
+            width: 720px;
+            height: 720px;
+            color: cyan;
+            font-size: 28px;
+            background-color: red;
+            background-image: url(../static/madara.jpg);
+            background-repeat: no-repeat;
+            background: repeat url(../static/madara.jpg) pink;
+        }
+    </style>
+</head>
+<body>
+    <div>我是谁，我在哪，<span>我叫不紧张</span></div></div>
+
+    <a href="http://www.baidu.com" id="bd">百度</a>
+    <ul>
+        <li>吃饭</li>
+        <li id="sleep">睡觉</li>
+        <li>打豆豆</li>
+    </ul>
+    <div class="cur">情如风雪无常，确是一动即殇</div>
+</body>
+</html>
